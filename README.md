@@ -4,7 +4,8 @@
 
 <p align="center">
   <a href="https://several-monday-invite-cakes.trycloudflare.com/">Try the live demo</a> &nbsp;&nbsp;&nbsp;
-  <a href="https://docs.google.com/presentation/d/1j81pZgbmy9RS8CqqDBVtohuCffwmqyrx-LurT6nzPrQ/preview">View the pitch deck</a> &nbsp;&nbsp;&nbsp;
+  <a href="presentation/Comm_Control_Pitch.pptx">PowerPoint deck</a> &nbsp;&nbsp;&nbsp;
+  <a href="presentation/Comm_Control_Pitch.pdf">PDF deck</a> &nbsp;&nbsp;&nbsp;
   <a href="presentation/Comm_Control_Poster.pdf">Download the poster</a>
 </p>
 
@@ -28,7 +29,7 @@ A quick way to explore:
 2. Select **City Hall**, then open **Evidence** to see the source and the uncertainty about who may still be inside.
 3. Open **Resources** to inspect capabilities, assignments and next-stop queues. The **USC campus** workspace shows how the same system supports facilities work.
 
-[Google Slides](https://docs.google.com/presentation/d/1j81pZgbmy9RS8CqqDBVtohuCffwmqyrx-LurT6nzPrQ/preview) contains the pitch. Downloadable [PDF](presentation/Comm_Control_Pitch.pdf) and [PowerPoint](presentation/Comm_Control_Pitch.pptx) copies are included too.
+Download the pitch as a [PowerPoint](presentation/Comm_Control_Pitch.pptx) or [PDF](presentation/Comm_Control_Pitch.pdf).
 
 ## The person we're building for
 
