@@ -1,0 +1,47 @@
+[
+  {
+    "file": "city-report.aiff",
+    "voice": "autumn",
+    "text": "There is smoke near City Hall. Two people are outside. I do not know if anyone is still inside. Main Street is blocked at Temple Street. Please send fire support.",
+    "sha256": "6b45330d65f7e42f32f811b8baea25185eaae3b5940ec6da6cb7fe13652b665e",
+    "origin": "Generated speech, fictional demonstration. Not a human recording.",
+    "model": "canopylabs/orpheus-v1-english",
+    "speaker": "Alex Rivera"
+  },
+  {
+    "file": "city-operator.aiff",
+    "voice": "hannah",
+    "text": "Tell the people at City Hall to stay outside. Do not use Main Street. Ask whether anyone is still inside.",
+    "sha256": "d62396511741cbfb0ad8cace1fb42af5e86a83f375b9e826defcdea572ffd83c",
+    "origin": "Generated speech, fictional demonstration. Not a human recording.",
+    "model": "canopylabs/orpheus-v1-english",
+    "speaker": "Operator"
+  },
+  {
+    "file": "warehouse.aiff",
+    "voice": "autumn",
+    "text": "There is smoke coming from the electrical room in the east warehouse. Two people are outside. I do not know if anyone is still inside. The north gate is blocked. Please send fire support.",
+    "sha256": "d9b7a90488e7e50528e30bee60bbca92cc829beb901d377a31119da33a63fd71",
+    "origin": "Generated speech, fictional demonstration. Not a human recording.",
+    "model": "canopylabs/orpheus-v1-english",
+    "speaker": "Alex Rivera"
+  },
+  {
+    "file": "operator.aiff",
+    "voice": "hannah",
+    "text": "Tell them to stay outside the east warehouse. Do not use the north gate. Ask whether anyone is still inside.",
+    "sha256": "9d3f3a926193147bc0df02f474c80e9518d65909f6c084d78ef09701d3132f12",
+    "origin": "Generated speech, fictional demonstration. Not a human recording.",
+    "model": "canopylabs/orpheus-v1-english",
+    "speaker": "Operator"
+  },
+  {
+    "file": "answer.aiff",
+    "voice": "autumn",
+    "text": "I cannot see inside the east warehouse. Two people are outside. I still do not know if anyone is inside.",
+    "sha256": "354afe70609044c63a1143571362f50b0d92c7843db2559bbf7b861cd1a29768",
+    "origin": "Generated speech, fictional demonstration. Not a human recording.",
+    "model": "canopylabs/orpheus-v1-english",
+    "speaker": "Alex Rivera"
+  }
+]

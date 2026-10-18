@@ -1,0 +1,11 @@
+# Comm Control v6 rehearsal
+
+Open the existing Mac launcher, then Workspace. Use fictional calls. Your saved reports remain intact; resetting is optional and destructive to the current run, so don't reset casually.
+
+1. Start a Live call. Say: “My husband has a gun and is going to shoot me. I need food. I think I'm going to kill myself. The event is at City Hall.” Finish and review. Violence and self-harm should lead, food should follow, and the app must not invent occupancy. Review the source words and event pin.
+2. Select the actual event place, or search a Downtown LA landmark/address/intersection. Add the reviewed incident. Explain queued delivery if the selected link is paused or slow. Only after receipt should a suitable available demo unit get a real-road route. Both safety and medical coverage can be needed for the mixed threat. If capacity is busy, show the honest shortage instead of claiming dispatch occurred.
+3. Open Resources. Show counts by capability and named area. Choose a capability to filter the map/areas/roster. Choose an area to inspect its assigned units. Add a demo unit if you want to demonstrate capacity relieving a waiting case. Mark arrival to show an operator-updated pin; don't describe this as live GPS.
+4. Demonstrate a road report: “Main Street is blocked at Temple Street.” A later incident's routes must avoid that saved segment. Expiry and closing the original incident keep it blocked. A later reviewed, direct “Main Street has been cleared at Temple Street” report, or manual reopening with a reason, clears the matching segment and recalculates routes. Secondhand or crossing-street statements do not clear it.
+5. Return to Evidence/Response plan. Review and approve an exact outgoing instruction. The recipient can Listen in the operator's fixed voice and reply. Receipt and a factual answer are separate states. Hand over and close from Case history; outcome/history remain and demo units are released.
+
+Finish the submission with a short actual-microphone rehearsal, a clean 2–3 minute recording and event-specific pitch copy. State the measured model scope honestly: prompt/semantic/policy tuning and synthetic regression checks, not trained weights or validated real-world dispatch.

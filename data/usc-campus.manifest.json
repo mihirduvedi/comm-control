@@ -1,0 +1,16 @@
+{
+  "retrieved_on": "2026-10-17",
+  "source": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:60];(way[\"building\"](34.015,-118.292,34.026,-118.278);way[\"highway\"](34.015,-118.292,34.026,-118.278);node[\"entrance\"](34.015,-118.292,34.026,-118.278););out body;>;out skel qt;",
+  "bounds": [
+    -118.292,
+    34.015,
+    -118.278,
+    34.026
+  ],
+  "sha256": "c024e12447755ed9034da192503864bddec9ae3b3195f05755327f686730fa5e",
+  "elements": 15577,
+  "bytes": 1540586,
+  "license": "ODbL-1.0",
+  "geometry_scope": "Outdoor OSM buildings, paths and entrance tags; no indoor exit survey. Named USC campus gate coordinates are approximate operator-authored intersections, referenced to official USC entrance descriptions."
+}

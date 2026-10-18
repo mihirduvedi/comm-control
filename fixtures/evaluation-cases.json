@@ -1,0 +1,385 @@
+{
+  "proof": "synthetic transcript-level cases; not field audio",
+  "cases": [
+    {
+      "id": "C01",
+      "source": "The north gate is blocked.",
+      "expected": {
+        "kind": "access",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "north-gate"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C02",
+      "source": "At the west warehouse, two people are outside.",
+      "expected": {
+        "kind": "people_outside",
+        "assertion": "asserted",
+        "count": 2,
+        "feature": "west-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C03",
+      "source": "Smoke is coming from the east warehouse.",
+      "expected": {
+        "kind": "smoke",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "east-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C04",
+      "source": "Three people are inside the west warehouse.",
+      "expected": {
+        "kind": "people_inside",
+        "assertion": "asserted",
+        "count": 3,
+        "feature": "west-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C05",
+      "source": "There is no fire at the east warehouse.",
+      "expected": {
+        "kind": "fire",
+        "assertion": "negated",
+        "count": null,
+        "feature": "east-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C06",
+      "source": "The south gate is blocked by a truck.",
+      "expected": {
+        "kind": "access",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "south-gate"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C07",
+      "source": "I need a technician at the operations office.",
+      "expected": {
+        "kind": "request",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "operations"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C08",
+      "source": "At the east warehouse, five people are outside.",
+      "expected": {
+        "kind": "people_outside",
+        "assertion": "asserted",
+        "count": 5,
+        "feature": "east-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C09",
+      "source": "The north gate is open and clear.",
+      "expected": {
+        "kind": "access",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "north-gate"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C10",
+      "source": "The door at the west warehouse will not close.",
+      "expected": {
+        "kind": "observation",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "west-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C11",
+      "source": "Two people are inside the east warehouse.",
+      "expected": {
+        "kind": "people_inside",
+        "assertion": "asserted",
+        "count": 2,
+        "feature": "east-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C12",
+      "source": "Smoke is visible at the central yard.",
+      "expected": {
+        "kind": "smoke",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "yard"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C13",
+      "source": "Four people are outside the operations office.",
+      "expected": {
+        "kind": "people_outside",
+        "assertion": "asserted",
+        "count": 4,
+        "feature": "operations"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C14",
+      "source": "Please send maintenance to the west warehouse.",
+      "expected": {
+        "kind": "request",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "west-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C15",
+      "source": "The south gate is open.",
+      "expected": {
+        "kind": "access",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "south-gate"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C16",
+      "source": "At the east warehouse, I do not know how many people are inside.",
+      "expected": {
+        "kind": "people_inside",
+        "assertion": "uncertain",
+        "count": null,
+        "feature": "east-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C17",
+      "source": "Six people are outside the east warehouse.",
+      "expected": {
+        "kind": "people_outside",
+        "assertion": "asserted",
+        "count": 6,
+        "feature": "east-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C18",
+      "source": "The north gate is blocked. The south gate is clear.",
+      "expected": {
+        "kind": "access",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "north-gate"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C19",
+      "source": "Can someone come to the operations office?",
+      "expected": {
+        "kind": "request",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "operations"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "C20",
+      "source": "At the west warehouse, the loading door is stuck.",
+      "expected": {
+        "kind": "observation",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "west-warehouse"
+      },
+      "category": "clean"
+    },
+    {
+      "id": "H01",
+      "source": "I am at the warehouse loading side. I need somebody here.",
+      "expected": {
+        "kind": "request",
+        "assertion": "asserted",
+        "count": null,
+        "feature": null
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H02",
+      "source": "At the east warehouse, I don't know if anyone is still inside.",
+      "expected": {
+        "kind": "people_inside",
+        "assertion": "uncertain",
+        "count": null,
+        "feature": "east-warehouse"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H03",
+      "source": "Someone told me there is smoke at the west warehouse. I have not seen it.",
+      "expected": {
+        "kind": "smoke",
+        "assertion": "hearsay",
+        "count": null,
+        "feature": "west-warehouse"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H04",
+      "source": "If there were a fire at the east warehouse, the drill would stop.",
+      "expected": {
+        "kind": "fire",
+        "assertion": "hypothetical",
+        "count": null,
+        "feature": "east-warehouse"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H05",
+      "source": "There are three, sorry, two people outside the east warehouse.",
+      "expected": {
+        "kind": "people_outside",
+        "assertion": "asserted",
+        "count": 2,
+        "feature": "east-warehouse"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H06",
+      "source": "I am at the east warehouse. Smoke is coming from the west warehouse.",
+      "expected": {
+        "kind": "smoke",
+        "assertion": "asserted",
+        "count": null,
+        "feature": "west-warehouse"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H07",
+      "source": "The gate is blocked. I cannot tell which gate.",
+      "expected": {
+        "kind": "access",
+        "assertion": "asserted",
+        "count": null,
+        "feature": null
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H08",
+      "source": "There may be people inside the east warehouse. I am not certain.",
+      "expected": {
+        "kind": "people_inside",
+        "assertion": "uncertain",
+        "count": null,
+        "feature": "east-warehouse"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H09",
+      "source": "At the north gate, I can see no smoke.",
+      "expected": {
+        "kind": "smoke",
+        "assertion": "negated",
+        "count": null,
+        "feature": "north-gate"
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "H10",
+      "source": "There is smoke coming from an electrical room. I do not know which building.",
+      "expected": {
+        "kind": "smoke",
+        "assertion": "asserted",
+        "count": null,
+        "feature": null
+      },
+      "category": "difficult"
+    },
+    {
+      "id": "O01",
+      "source": "Do not use the north gate. Stay outside.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O02",
+      "source": "At the east warehouse, stay outside. Ask whether anyone is still inside.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O03",
+      "source": "Wait five minutes at the operations office. Do not enter the east warehouse.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O04",
+      "source": "If smoke increases, report it. Do not use the north gate.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O05",
+      "source": "Do not move the two containers until the operator replies.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O06",
+      "source": "Ask if they can follow this instruction. Stay outside the west warehouse.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O07",
+      "source": "At 10:30 PM, check in from the south gate. Do not open it.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O08",
+      "source": "Use the south gate only when the supervisor confirms. Do not use the north gate.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O09",
+      "source": "Report whether the west warehouse door will close. Keep four people outside.",
+      "category": "outgoing"
+    },
+    {
+      "id": "O10",
+      "source": "Do not enter. Is anyone still inside the east warehouse?",
+      "category": "outgoing"
+    }
+  ]
+}

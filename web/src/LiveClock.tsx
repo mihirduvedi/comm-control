@@ -1,0 +1,3 @@
+import {useEffect,useState} from 'react';
+import {Clock3} from 'lucide-react';
+export function LiveClock(){const [now,setNow]=useState(new Date());useEffect(()=>{const t=setInterval(()=>setNow(new Date()),1000);return()=>clearInterval(t)},[]);return <div className="live-clock" aria-label="Current date and Pacific time"><Clock3 size={15}/><div><time dateTime={now.toISOString()}>{now.toLocaleTimeString('en-US',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})}</time><span>{now.toLocaleDateString('en-US',{timeZone:'America/Los_Angeles',weekday:'short',month:'short',day:'numeric',year:'numeric'})} Pacific time</span></div></div>}

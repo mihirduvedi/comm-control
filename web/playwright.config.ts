@@ -1,0 +1,3 @@
+import {defineConfig} from '@playwright/test';
+import path from 'node:path';
+export default defineConfig({testDir:'./tests',workers:1,timeout:45000,webServer:{command:'../.venv/bin/uvicorn server.main:create_app --factory --app-dir .. --host 127.0.0.1 --port 8766',url:'http://127.0.0.1:8766/api/health',env:{COMM_DATA_DIR:path.resolve('../.data-browser-tests'),COMM_WEB_DIST:path.resolve('dist-next')},reuseExistingServer:true},use:{baseURL:'http://127.0.0.1:8766',headless:true,launchOptions:{executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'},viewport:{width:1440,height:900}},reporter:[['list'],['json',{outputFile:'../evidence/browser-results.json'}]]});

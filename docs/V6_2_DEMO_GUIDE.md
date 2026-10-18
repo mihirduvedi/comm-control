@@ -1,0 +1,12 @@
+# Comm Control v6.2 rehearsal
+
+1. Open USC facilities. Point out the custom plan, actual building footprints, building lookup and layer switches. The campus plan runs from local geometry and needs no map tiles.
+2. Use New test → USC facilities to save the current run and queue six simulated reports. Do this only when you intend to change the current run. Saved tests can restore it afterward.
+3. Show 145 psi followed by 220 psi on the same demo tank. Both original reports remain; the later value falls outside the demo range and selects lab-safety review. The reading cards show source links and history. Unknown tank identities and units must not inherit a real equipment limit.
+4. Open a work item. Show caller evidence, the assigned simulated team and the outdoor route with its dotted unmapped arrival gap. Save a state update and a review note; reload to show persistence. Alarm, lab-safety, access and maintenance resources have different roles.
+5. Review a campus gate or update a path. Blocked segments stay excluded, including on later reports. A newer explicit matched clearance or reviewed manual opening can clear them. Unreviewed access and approximate gate positions are labeled. Indoor exits are not surveyed; mark a point only with an operator source/verification note.
+6. Use the header Live call button. Record a report naming SGM, Michelson, Leavey or another supported building. Finish and review the source, then review the USC building pin. Keep ambiguous locations unconfirmed; no team should be reserved for a held place. The fastest path needs no separate session-creation step.
+7. Scroll a long incident panel to reach the complete campus/city map. Drag a queue row toward the top edge and let the list scroll before dropping. Use priority restores ranking. Switch tabs to show the sliding outline; reduced motion disables the transition.
+8. Finish with the received source, response thread and work history. Do not present annotated fixtures or typed entry as hosted speech recognition. No real USC telemetry, campus operations, vehicle routing, indoor egress or emergency dispatch is connected.
+
+The old fictional campus UI is retired. Saved source vocabulary and legacy test compatibility remain so existing evidence is readable. Real USC names/footprints do not make the simulated equipment, reports or teams real. Outdoor pedestrian paths are estimates without live access, traffic, indoor or accessibility validation.

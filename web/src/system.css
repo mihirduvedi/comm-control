@@ -1,0 +1,468 @@
+/* Comm Control shared system. Layout and map mechanics live in workspaces.css. */
+:root {
+  --font-body:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-title:var(--font-body);
+  --ink:#233d54;
+  --muted:#506b82;
+  --line:#bed3e7;
+  --panel:#ffffffed;
+  --blue:#2868aa;
+  --fire:#a44031; --fire-soft:#fff0e9;
+  --medical:#2864a5; --medical-soft:#eaf3ff;
+  --access:#875b17; --access-soft:#fff7e1;
+  --safety:#714e9e; --safety-soft:#f3edfc;
+  --service:#187467; --service-soft:#e8f7f2;
+  font-family:var(--font-body);font-size:15px;font-weight:475;color:var(--ink);
+}
+body {font-family:var(--font-body);color:var(--ink);background:#f8fafc}
+.page-loading p {color:var(--muted)}
+body::before {opacity:.5}
+button,input,select,textarea {font-family:var(--font-body);font-size:15px}
+#root :is(h1,h2,h3,h4,h5,h6,.brand strong),.usc-building-caption text {font-family:var(--font-body);font-weight:700;letter-spacing:-.025em}
+p {line-height:1.6}
+.hint,.dialog-intro,.mode-note {font-size:14px;line-height:1.6;color:var(--muted)}
+.text-button {font-size:14px;line-height:1.45;font-weight:650}
+.button {font-size:14px;font-weight:650;border-radius:13px;min-height:40px;padding:10px 15px}
+.button.secondary {background:#f6faff;border-color:var(--line);color:#2c5f90;box-shadow:none}
+.button.primary {background:var(--blue);box-shadow:0 3px 9px #235d9517}
+.simulation-tag,.status-tag,.building-tag {display:inline-flex;align-items:center;border:1px solid #c8dbee;border-radius:8px;padding:4px 8px;background:#eef5fd;color:#3d6080;font-size:12px;font-weight:650;line-height:1.35;white-space:nowrap}
+.status-tag.available,.status-tag.on_scene {background:#e9f5ef;color:#2c6759;border-color:#c4dfd3}
+.status-tag.holding,.status-tag.monitoring {background:#fff5df;color:#815c25;border-color:#e7d6b2}
+.panel-kicker,.eyebrow {font-size:12px;letter-spacing:.09em;font-weight:700;color:#506d85}
+
+/* One native select treatment: a quiet inset chevron, room for text, native keyboard behavior. */
+#root select {
+  appearance:none;-webkit-appearance:none;
+  background-color:#fff;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23456b8b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;background-size:18px;
+  border:1px solid var(--line);border-radius:11px;padding:10px 42px 10px 12px;
+  min-height:41px;color:#345671;line-height:1.45;
+}
+#root select:focus-visible {outline:2px solid #5a91c9;outline-offset:2px}
+#root select:disabled {opacity:.6}
+#root details>summary {list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;min-height:36px;padding-right:9px;font-weight:650}
+#root details>summary::-webkit-details-marker {display:none}
+#root details>summary::marker {content:''}
+#root details>summary::after {content:'';width:7px;height:7px;border-right:1.7px solid #527796;border-bottom:1.7px solid #527796;transform:rotate(45deg);margin:0 5px 4px auto;flex:none;transition:transform .18s}
+#root details[open]>summary::after {transform:rotate(225deg);margin-bottom:-3px}
+/* Existing disclosure icons use the same geometry, with breathing room from panel edges. */
+#root details>summary>svg:last-child:not(:first-child) {display:none}
+
+/* Floating navigation retains a single moving selection across routes. */
+.app-header {background:#ffffffed;border-color:#bdd4eb;box-shadow:0 6px 25px #2f5c8510;gap:15px}
+.app-header .brand strong {font-size:17px;letter-spacing:-.5px}
+.app-header nav a {font-size:13px;padding-inline:10px;font-weight:650}
+.app-header nav>.sliding-selection {background:#e8f2ff;border-color:#b6cfea}
+.workspace-switch button {font-size:12px;font-weight:650}
+.header-live-call {font-size:13px}
+.header-right .live-clock time {font-size:15px}
+.dispatch-statusbar {font-size:13px}
+
+/* Categories carry meaning in both the queue and the selected report. No edge stripes. */
+.cat-fire {--category:var(--fire);--category-soft:var(--fire-soft)}
+.cat-medical {--category:var(--medical);--category-soft:var(--medical-soft)}
+.cat-access {--category:var(--access);--category-soft:var(--access-soft)}
+.cat-safety {--category:var(--safety);--category-soft:var(--safety-soft)}
+.cat-service,.cat-information {--category:var(--service);--category-soft:var(--service-soft)}
+.category-badge {display:inline-flex;align-items:center;gap:6px;background:var(--category-soft,#eaf3ff);color:var(--category,#2864a5);border:1px solid color-mix(in srgb,var(--category,#2864a5) 22%,white);border-radius:8px;padding:4px 8px;font-size:12px;font-weight:700;line-height:1.35}
+.severity-badge {font-size:12px;font-weight:650;padding:4px 8px;border-radius:8px;line-height:1.35;white-space:nowrap}
+.severity-badge.critical {background:#fff0ed;color:#a1372b;border-color:#ebc0b7}
+.severity-badge.elevated {background:#fff7e5;color:#82561c;border-color:#e9d2a4}
+.severity-badge.routine {background:#f2f7fb;color:#476882;border-color:#c8d9e8}
+.incident-sidebar,.incident-main,.dispatch-detail {background:var(--panel);border-color:var(--line);box-shadow:0 5px 22px #2b547410}
+.incident-queue-heading {padding:17px 16px 12px}
+.incident-queue-heading h2 {font-size:18px}.incident-queue-heading p {font-size:13px}
+.incident-category-select {font-size:13px;gap:8px}
+#root .incident-category-select select {font-size:13px;min-height:36px;padding-block:6px}
+.incident-filter>button {font-size:12px}
+.incident-row {padding:17px 16px 16px;border-color:#dce7f1}
+.incident-row.selected {background:var(--category-soft);box-shadow:none}
+.incident-row:hover {background:color-mix(in srgb,var(--category-soft) 70%,white)}
+.incident-row-heading strong {font-size:15px;line-height:1.4}
+.incident-row-heading time {font-size:11px}
+.incident-row .issue-icon {color:var(--category)}
+.incident-row-summary {font-size:14px;line-height:1.5;margin:9px 0}
+.incident-row-type {display:flex;align-items:center;justify-content:space-between;gap:6px;margin:8px 0}
+.incident-row-type .category-badge {font-size:11px;padding:3px 6px}
+.incident-row-type .severity-text {font-size:12px;font-weight:700}
+.incident-row-caller,.incident-row-status {font-size:12px;line-height:1.5}
+.incident-row-caller {margin-top:7px}
+.incident-visible-tags {display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.compact-incident .incident-visible-tags .category-badge,.compact-incident .severity-badge {font-size:12px;padding:4px 8px}
+.compact-incident .incident-identifier {margin-left:auto;font-size:11px;color:#59738a}
+.incident-main>.incident-brief {padding:15px 18px 10px}
+.compact-incident-title h1 {font-size:21px;line-height:1.35}
+.compact-incident-title>.text-button {font-size:14px}
+.incident-context {font-size:13px;margin-top:4px}
+.incident-key-facts>div>span,.incident-key-facts small {font-size:13px}
+.incident-key-facts strong {font-size:15px}
+.context-metadata>.category-badge,.context-metadata>.severity-badge,.context-metadata>.incident-identifier {display:none}
+.incident-main>.map-mode-bar {padding:7px 13px;min-height:40px}
+.map-mode-bar button,.map-mode-bar .map-expand,.map-mode-bar>div:last-child {font-size:12px}
+.map-mode-bar .map-expand {min-height:30px}
+.world-map-footer,.usc-map-foot {font-size:12px;min-height:40px}
+.dispatch-map-area>.place-search>input {font-size:13px}
+.dispatch-map-area>.place-search>.text-button {font-size:12px}
+.dispatch-map-area>.place-search {right:145px}
+#root .incident-main .usc-map-toolbar select {font-size:13px;min-height:34px;padding-block:6px;max-width:270px}
+.incident-main .usc-map-toolbar button {font-size:12px;min-height:30px}
+.plan-heading h2,.usc-response h2 {font-size:22px}
+.plan-section-title h3 {font-size:15px}
+.automation-summary,.assigned-unit-top>div>span,.route-choice strong,.route-choice span,.route-basis,.plan-warning,.communications-section>.plan-section-title>span {font-size:13px}
+.usc-response {font-size:15px;padding:22px 19px}
+.usc-response .hint {font-size:13px}
+.usc-response>strong {font-size:17px}
+.usc-response p>span+span {font-size:13px;margin-left:6px}
+
+/* Page rhythm: same heading, surface, border and type scale for every operator page. */
+.admin-page,.resources-page {max-width:1480px;margin:auto;padding:30px 30px 55px}
+.admin-title,.resources-heading {margin:0 0 24px}
+.admin-title h1,.resources-heading h1 {font-size:32px;line-height:1.25;margin:8px 0 9px;letter-spacing:-.8px}
+.admin-title p,.resources-heading>div>p:not(.panel-kicker) {font-size:16px;line-height:1.6;color:var(--muted);max-width:720px;margin-top:0}
+.resources-heading>div:last-child {gap:12px}
+.resources-updated {font-size:13px}
+.resource-context {font-size:14px;gap:26px;margin-bottom:18px}
+.resource-context a {padding:10px 2px}
+.resource-section-heading h2 {font-size:19px}
+.resource-section-heading>span,.resource-section-heading .text-button {font-size:13px}
+.resource-section-heading {margin-bottom:14px;min-height:32px}
+.session-create,.session-list-panel,.settings-section,.resource-map-section,.resource-areas,.resource-missions,.resource-roster,.resource-waiting,.resource-activity,.usc-map-section,.usc-work-list {
+  border:1px solid var(--line);border-radius:22px;background:var(--panel);padding:20px;box-shadow:0 5px 22px #2b547408;
+}
+.session-create {max-width:none;margin:0 0 24px}
+.session-create-heading {display:flex!important;align-items:center;justify-content:space-between;flex-direction:row!important;margin-bottom:18px}
+.session-create-heading h2 {font-size:19px;margin:0}
+.session-create>label {display:block;font-size:14px;font-weight:650;margin-bottom:8px}
+.session-create>div:not(.session-create-heading) {max-width:800px;display:flex;gap:12px}
+.session-create .hint {display:block;margin-top:10px;font-size:13px}
+.session-create input {background:#fff;min-height:46px;font-size:15px;border-color:var(--line);border-radius:12px}
+.session-create .button {white-space:nowrap}
+.session-table {border:0;background:transparent;border-radius:12px;overflow:hidden}
+.table-heading {background:#edf5fe;color:#3d5e7c;font-size:13px;font-weight:700;padding:14px 16px;grid-template-columns:1fr 170px 250px;border-radius:12px}
+.session-line {background:transparent;padding:17px 16px;border-color:#dbe7f1;font-size:15px;grid-template-columns:1fr 170px 250px}
+.session-line small {font-size:13px;margin-top:4px;color:var(--muted)}
+.session-line-actions {gap:10px}
+.table-empty {font-size:15px;padding:32px 16px;color:var(--muted);line-height:1.6}
+.settings-section h2 {font-size:21px}.settings-section>p,.setting-line p,.settings-grid>label {font-size:14px}
+.settings-section .hint {font-size:13px}
+
+/* Resource status is readable at a glance; capability color stays consistent with reports. */
+.resource-situation,.usc-summary {background:#eaf3fc85;border:1px solid var(--line);border-radius:19px;padding:20px;margin-bottom:18px;gap:16px}
+.resource-situation strong,.usc-summary strong {font-size:30px;font-weight:700;letter-spacing:-.7px}
+.resource-situation p,.usc-summary span {font-size:14px;line-height:1.4;color:#496981;margin-top:7px}
+.usc-summary>div {align-items:center;gap:12px}
+.resource-totals {gap:12px;border:0;background:transparent;margin-bottom:24px}
+.resource-cap-medical {--category:var(--medical);--category-soft:var(--medical-soft)}
+.resource-cap-fire {--category:var(--fire);--category-soft:var(--fire-soft)}
+.resource-cap-safety {--category:var(--safety);--category-soft:var(--safety-soft)}
+.resource-cap-traffic {--category:var(--access);--category-soft:var(--access-soft)}
+.resource-cap-general {--category:var(--service);--category-soft:var(--service-soft)}
+.resource-total {padding:16px;background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:0 4px 15px #2b547407}
+.resource-total:hover,.resource-total.selected {background:var(--category-soft);border-color:color-mix(in srgb,var(--category) 45%,white)}
+.resource-total>span {display:inline-flex;font-size:13px;font-weight:700;background:var(--category-soft);color:var(--category);border-radius:7px;padding:4px 8px}
+.resource-total strong {font-size:29px;font-weight:700;letter-spacing:-.5px;margin:8px 0}
+.resource-total small,.resource-total .capacity-stage,.resource-total .capacity-shortage {font-size:12px;line-height:1.5}
+.resource-total p {font-size:13px}
+.resource-total .capacity-stage,.resource-total.selected .capacity-stage {display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px}
+.resource-total .capacity-stage>span {white-space:nowrap}
+.resource-total .capacity-track i {background:var(--category)}
+.resource-overview,.resource-lower {gap:20px;grid-template-columns:minmax(0,1fr) 350px}
+.resource-map {height:490px;min-height:490px;border-radius:15px;box-shadow:none}
+.resource-areas {max-height:592px;overflow:auto}
+.resource-area {padding:16px 4px;gap:9px}
+.resource-area strong {font-size:16px}
+.resource-area p {font-size:14px;margin-block:7px}
+.resource-area small {font-size:13px;color:#526e85}
+.resource-mode-note,.resource-empty {font-size:14px;line-height:1.6;padding:16px 4px}
+.resource-map-caption {font-size:13px;border-radius:11px;max-width:calc(100% - 70px)}
+.resource-map-caption small {font-size:12px}
+.resource-table>[role=row],.mission-table>article {font-size:14px;line-height:1.5}
+.resource-table .resource-table-head,.mission-head {font-size:12px}
+.resource-table small,.mission-table small {font-size:13px;color:#526e85;line-height:1.5}
+.resource-table .text-button,.mission-table .text-button {font-size:13px}
+.resource-state {font-size:13px;font-weight:650}
+.resource-waiting-row strong {font-size:15px}
+.resource-waiting-row>span,.resource-waiting-row p,.resource-waiting-row small {font-size:13px}
+.resource-activity {border:1px solid var(--line);padding:20px}
+.resource-activity>a {font-size:14px;padding:15px 4px}
+.resource-activity p,.resource-activity time {font-size:13px}
+
+/* USC work and equipment use the same semantic tags and surfaces. */
+.usc-controls {padding:4px 0 20px;gap:18px}
+.usc-work-filters button {font-size:14px;min-height:40px}
+.usc-grid {gap:20px;grid-template-columns:minmax(0,1fr) 350px}
+.usc-map-section {padding:14px}
+.usc-map-section>.usc-map {height:650px;min-height:620px;border-radius:16px}
+.usc-work-list {padding:20px 14px}
+.usc-kind-gas,.usc-kind-pressure {--category:var(--safety);--category-soft:var(--safety-soft)}
+.usc-kind-smoke {--category:var(--fire);--category-soft:var(--fire-soft)}
+.usc-kind-access {--category:var(--access);--category-soft:var(--access-soft)}
+.usc-kind-maintenance {--category:var(--service);--category-soft:var(--service-soft)}
+.usc-work-row {padding:16px 10px;border-radius:12px}
+.usc-work-row:hover {background:var(--category-soft)}
+.usc-work-row>div {align-items:center;margin-bottom:11px;font-size:13px}
+.usc-work-row>strong {font-size:16px;line-height:1.5;font-weight:700}
+.usc-work-row p {font-size:14px;line-height:1.5;margin-block:10px}
+.usc-work-row>small {display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+.usc-work-row .category-badge {font-size:12px}
+.usc-map-toolbar button,.usc-map-actions .text-button {font-size:13px}
+.usc-map-foot,.usc-map-foot .text-button,.usc-data-note,.usc-sources {font-size:13px}
+.usc-map-foot {flex-wrap:wrap}
+.usc-asset-grid {gap:16px}
+.usc-asset-grid article {border-color:var(--line);border-radius:20px;padding:21px;background:var(--panel)}
+.usc-asset-grid h3 {font-size:18px;line-height:1.4}
+.usc-asset-grid article>p:first-child {font-size:12px;letter-spacing:.06em}
+.usc-asset-grid article>span,.usc-asset-grid small,.usc-asset-grid .hint {font-size:14px;line-height:1.6}
+.usc-reading {font-size:36px}
+.usc-reading-history {font-size:15px;gap:16px}
+.campus-roster {border:1px solid var(--line);border-radius:18px;padding:0 18px;background:var(--panel)}
+.campus-roster>article {font-size:15px;padding:18px 0;align-items:center;grid-template-columns:1.1fr .8fr 1.5fr}
+.campus-roster small,.campus-roster>article>span {font-size:13px}
+.campus-roster>article:last-child {border-bottom:0}
+.usc-ticket-title>span,.usc-ticket-title p,.usc-route-note p,.usc-route-note small,.usc-ticket-sources p,.usc-ticket-sources small,.usc-history {font-size:14px;line-height:1.6}
+.usc-sources summary {font-size:15px}
+
+@media(min-width:1024px) and (max-width:1390px) {
+  .app-header {gap:9px;padding-inline:15px}.app-header nav a {font-size:12px;padding-inline:7px}
+  .app-header .brand strong {font-size:16px}.workspace-switch button {font-size:11px;padding-inline:7px}
+  .header-live-call {font-size:12px;padding-inline:9px}.header-right .live-clock {display:none}
+  .dispatch-shell {grid-template-columns:245px minmax(0,1fr) 310px}
+  .compact-incident-title {display:block}.compact-incident-title>.text-button {max-width:none;text-align:left;justify-content:flex-start}
+  .compact-incident-title h1 {font-size:20px}
+}
+@media(max-width:1100px) {
+  .resource-overview,.resource-lower,.usc-grid {grid-template-columns:minmax(0,1fr) 300px}
+  .resource-total {padding:14px 11px}.resource-total strong {display:block}.resource-total strong small {display:inline;margin-left:5px}
+  .resource-situation p {font-size:13px}.usc-summary>div {align-items:flex-start;flex-direction:column;gap:2px}
+}
+@media(max-width:800px) {
+  .admin-page,.resources-page {padding:24px 18px 40px}
+  .resource-overview,.resource-lower,.usc-grid {grid-template-columns:1fr}
+  .resource-totals {grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .resource-situation {grid-template-columns:repeat(3,1fr)}
+  .resource-map {height:470px;min-height:470px}.resource-areas {max-height:none}
+  .usc-map-section>.usc-map {height:620px;min-height:600px}
+  .resource-total strong {display:flex;gap:6px}.resource-total strong small {margin:0}
+  .resource-total .capacity-stage {display:block}
+  .table-heading,.session-line {grid-template-columns:1fr 110px 220px}
+}
+@media(max-width:650px) {
+  .app-header {gap:8px;padding:12px;margin:10px 9px 5px}.app-header .brand strong {font-size:15px}
+  .app-header nav a {font-size:12px;padding:9px 8px}.app-header nav a svg {width:14px}
+  #root .mobile-workspace-select {background-color:transparent;font-size:12px;width:124px;max-width:124px;padding:6px 23px 6px 3px;background-position:right 2px center;border:0;min-height:34px}
+  .header-live-call {font-size:12px;padding:6px 8px;min-height:34px}
+  .dispatch-statusbar {font-size:12px}
+  .incident-main>.incident-brief {padding:13px 14px 8px}.compact-incident-title h1 {font-size:20px}
+  .compact-incident-title>.text-button {font-size:14px}.incident-context {font-size:13px}
+  .incident-main>.map-mode-bar {padding:6px 10px}.map-mode-bar button,.map-mode-bar .map-expand {font-size:12px}
+  .map-mode-bar>div:last-child>span:not(.closure-dot) {font-size:11px}
+  .dispatch-map-area>.place-search>input {font-size:12px}.dispatch-map-area>.place-search>.text-button {font-size:11px}
+  .dispatch-map-area>.place-search {right:104px}
+  #root .incident-main .usc-map-toolbar select {font-size:12px;max-width:none}
+  .incident-main .usc-map-toolbar button {font-size:12px}
+  .world-map-footer,.usc-map-foot {font-size:11px}
+  .admin-title h1,.resources-heading h1 {font-size:29px;max-width:none}
+  .admin-title p,.resources-heading>div>p:not(.panel-kicker) {font-size:15px}
+  .session-create,.session-list-panel,.settings-section,.resource-map-section,.resource-areas,.resource-missions,.resource-roster,.resource-waiting,.resource-activity {padding:16px;border-radius:19px}
+  .session-create>div:not(.session-create-heading) {flex-direction:column}.session-create-heading h2 {font-size:18px}
+  .session-line {grid-template-columns:1fr;padding:18px 2px;gap:10px}.table-heading {display:none}
+  .session-line>span::after {content:' received reports';font-size:13px;color:var(--muted)}
+  .resources-heading {flex-direction:column;gap:12px}
+  .resources-heading>div:last-child {flex-wrap:wrap;justify-content:flex-start;width:100%}
+  .resource-situation,.usc-summary {padding:16px;gap:16px 10px}
+  .resource-situation strong,.usc-summary strong {font-size:27px}
+  .resource-situation p,.usc-summary span {font-size:13px}
+  .resource-total {padding:13px 10px}.resource-total strong {display:block;font-size:27px}.resource-total strong small {display:block;margin:0}
+  .resource-total>span {font-size:12px;padding:3px 6px}.resource-total p,.resource-total small,.resource-total .capacity-stage,.resource-total .capacity-shortage {font-size:12px}
+  .resource-totals {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .resource-section-heading {flex-wrap:wrap;gap:7px}.resource-section-heading h2 {font-size:18px}
+  .resource-map {min-height:370px;height:370px}.resource-map-caption {font-size:12px;padding:10px}
+  .resource-map-caption small {font-size:11px}
+  .resource-table>[role=row] {grid-template-columns:1fr 1fr;font-size:14px;gap:10px;padding-block:17px}
+  .resource-table [role=cell]:nth-child(3) {grid-column:1/-1}.resource-table [role=columnheader]:nth-child(3) {display:none}
+  .mission-table>article {font-size:14px;padding:17px 0}.mission-table small {font-size:13px}
+  .usc-work-filters {width:100%;gap:2px}.usc-work-filters button {font-size:13px;padding-inline:10px}
+  .usc-map-section {padding:9px}.usc-map-section>.usc-map {height:530px;min-height:530px}
+  .usc-map-toolbar {flex-wrap:wrap;gap:10px}#root .usc-map-toolbar select {flex-basis:100%;max-width:none}
+  .usc-map-foot,.usc-data-note {font-size:12px;line-height:1.5}
+  .usc-asset-grid {grid-template-columns:1fr}.usc-asset-grid article>p:first-child {font-size:12px}
+  .campus-roster {padding-inline:16px}.campus-roster>article {grid-template-columns:1fr auto;gap:10px;font-size:15px}
+  .campus-roster>article>div:last-child {grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce) {#root details>summary::after {transition:none}}
+/* Quiet operational text retains contrast on the pale blue canvas. */
+.resources-updated,.resource-mode-note,.resource-situation strong>span,.resource-total p>span {color:#506b82}
+@media(min-width:1024px) {
+  .incident-main>.dispatch-map-area {flex-basis:590px;min-height:590px}
+  .incident-main .world-map-canvas,.incident-main .usc-map-canvas {min-height:550px}
+  .map-expanded .incident-main>.dispatch-map-area {flex:1 1 590px;min-height:300px}
+  .map-expanded .incident-main .world-map-canvas,.map-expanded .incident-main .usc-map-canvas {min-height:0}
+}
+.resource-lower {align-items:start}
+.usc-asset-grid .usc-reading-history small {font-size:13px}
+#root details>summary>svg.lucide-chevron-down {display:none}
+.usc-condition {font-size:17px;line-height:1.5}
+.usc-asset-grid .status-tag {align-self:flex-start;font-size:13px}
+.campus-roster article>div:last-child>.hint {margin:6px 0;font-size:13px}
+.incident-row-type .severity-text.routine {color:#506b82}
+.incident-row-type .severity-text.elevated {color:#80571e}
+.incident-row-type .severity-text.critical {color:#a1372b}
+
+
+/* v6.5: a shared page scroll, wider incident ledger, and softly enclosed surfaces. */
+:root {--panel-shadow:0 0 24px #2b547412}
+.app-header,.incident-sidebar,.incident-main,.dispatch-detail,
+.session-create,.session-list-panel,.settings-section,.resource-map-section,.resource-areas,
+.resource-missions,.resource-roster,.resource-waiting,.resource-activity,.usc-map-section,.usc-work-list {
+  box-shadow:var(--panel-shadow);
+}
+.review-row {border:1px solid var(--line);border-radius:14px;padding:17px 18px;margin-block:12px;box-shadow:0 0 16px #2b54740a;background:var(--panel)}
+.dispatch-shell {max-width:1800px;height:auto;min-height:0;align-items:start;grid-template-columns:292px minmax(0,1fr) 340px;gap:16px;padding-bottom:28px}
+.incident-main {height:auto;overflow:clip;overscroll-behavior:auto;scrollbar-gutter:auto;min-width:0}
+.dispatch-detail {height:auto;min-height:clamp(600px,calc(100dvh - 150px),820px)}
+.dispatch-detail>.detail-scroll {overflow:visible;flex:1 0 auto;min-height:0}
+.incident-sidebar {height:clamp(600px,calc(100dvh - 150px),820px)}
+.incident-list {overscroll-behavior-y:auto}
+.detail-tabs.sliding-bar {padding:16px 12px 9px;border:0;background:transparent;gap:4px;min-height:69px}
+.detail-tabs.sliding-bar>button {min-height:44px;padding:8px 7px}
+.operations-panel>.usc-response {padding:4px 0 18px}
+.incident-filter.sliding-bar {padding:8px 10px;gap:2px}
+.incident-filter.sliding-bar>button {padding:7px 4px;white-space:nowrap;font-size:12px}
+.incident-row-heading strong {font-size:15px;line-height:1.4}
+.incident-row-caller {display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.incident-row-caller>time {font-size:11px;white-space:nowrap;color:var(--muted)}
+.queue-order-tools {font-size:12px;padding:11px 16px;gap:12px}
+.queue-order-copy {display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex:1;min-width:0}
+.queue-order-copy>strong {font-weight:650;white-space:nowrap}
+.queue-order-copy>span {font-size:11px;white-space:nowrap}
+.queue-order-tools:has(button) .queue-order-copy {flex-direction:column;gap:3px}
+.meta-pair {display:flex;align-items:baseline;flex-wrap:wrap;gap:5px 14px}
+.usc-work-row .meta-pair>span:last-child {text-transform:capitalize}
+.resource-total .capacity-stage {display:flex;flex-wrap:wrap;gap:4px 12px}
+@media(min-width:1550px) {.dispatch-shell {grid-template-columns:300px minmax(0,1fr) 360px}}
+@media(min-width:1024px) {
+  .incident-main>.dispatch-map-area {height:clamp(590px,85cqw,820px);min-height:590px;flex:none}
+  .map-expanded>.incident-main {height:auto;overflow:hidden}
+  .map-expanded .incident-main>.dispatch-map-area {height:auto;min-height:0;flex:1 1 0}
+  body:has(.map-expanded) {overflow:hidden}
+}
+@media(min-width:1024px) and (max-width:1390px) {.dispatch-shell {grid-template-columns:270px minmax(0,1fr) 300px;gap:12px}}
+@media(max-width:1023px) {
+  .dispatch-shell {height:auto;min-height:0;padding-bottom:24px}
+  .incident-main,.dispatch-detail {height:auto;min-height:0}
+  .incident-sidebar {height:clamp(600px,calc(100dvh - 230px),820px)}
+  .map-expanded>.incident-main {height:auto;overflow:hidden}
+  .map-expanded .incident-main>.dispatch-map-area {min-height:0;flex:1 1 0}
+  body:has(.map-expanded) {overflow:hidden}
+}
+
+/* Voice is the entry point; incident stages reflect saved operational state. */
+.brand-wordmark {display:flex;flex-direction:column;gap:2px}
+.brand-wordmark>small {font-size:10px;line-height:1.2;letter-spacing:0;color:#526e87}
+.header-live-call {background:#2868aa;color:white;border-color:#2868aa;box-shadow:0 0 15px #2868aa18;font-weight:700}
+.header-live-call:hover {background:#225b96;color:white;border-color:#225b96}
+.response-journey {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:12px 0 7px;padding:0;list-style:none}
+.response-journey li {min-width:0}
+.response-journey li>span {display:flex;align-items:center;gap:5px;color:#315d82;font-size:13px;line-height:1.5}
+.response-journey li>span>svg {flex:none}
+.response-journey strong {font-weight:650}
+.response-journey small {display:block;font-size:12px;color:#526c83;line-height:1.5;margin-top:2px}
+.response-journey .pending>span {color:#8a632f}
+@media(max-width:1390px) {.brand-wordmark>small {display:none}.header-live-call {white-space:nowrap}}
+@media(max-width:650px) {
+  .app-header .brand strong {font-size:14.5px}
+  #root .mobile-workspace-select {width:110px;max-width:110px;font-size:12px}
+  .header-quick-action {gap:6px}.header-live-call {padding-inline:8px;font-size:12px;gap:4px}
+  .voice-verb {display:none}
+  .response-journey {grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 14px;margin-block:11px 7px}
+  .response-journey li>span {font-size:13px}
+}
+@media(max-width:370px) {.app-header .brand-mark {display:none}}
+/* The call workspace uses the same paper, type scale and blue edges as the desk. */
+.live-intake-panel {background:transparent;color:var(--ink);padding:22px 20px}
+.live-intake-panel>h2 {font-size:24px;line-height:1.3;color:var(--ink)}
+.live-intake-intro {font-size:14px;line-height:1.65;color:var(--muted)}
+.live-panel-heading>.text-button,.live-call-label {font-size:12px}
+.live-capture-actions {gap:8px}
+.live-capture-actions>.button {font-size:14px;min-height:46px}
+.live-demo-example {background:#f7fbff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:23px}
+.live-demo-example>strong {font-size:12px;color:#3e6484}
+.live-demo-example>p {font-size:14px;line-height:1.7;margin-top:8px;color:var(--ink)}
+.live-privacy-note {font-size:12px;line-height:1.65;border:0;padding:0;margin-top:20px;color:var(--muted)}
+.live-transcript textarea {font-size:15px;line-height:1.65;border-color:var(--line);border-radius:12px;background:white}
+.live-transcript>.button,.live-facts>.button {font-size:14px;min-height:44px}
+.live-facts>.section-heading>span {font-size:12px;background:#edf5ff;border:1px solid var(--line);border-radius:7px;padding:4px 7px}
+.live-facts article {font-size:14px;gap:10px;margin-top:19px}
+.live-facts article strong {font-size:16px;font-weight:650}
+.live-facts article small,.live-place-matches small {font-size:13px}
+.live-facts article blockquote {font-size:14px;line-height:1.65;padding-left:10px}
+.live-facts>.hint {font-size:13px}
+.live-place-matches>span,.live-place-matches>div {font-size:13px}
+.live-queued {border:1px solid var(--line);border-radius:14px;background:#f1f7ff;font-size:14px}
+.live-brief {background:var(--panel)}
+
+.usc-map-preview .usc-building.selected {stroke-dasharray:5 4}
+.usc-map-preview .live-map-note {bottom:14px}
+
+/* Location picking must preserve Leaflet's own container classes and clipping. */
+.world-map.picking>.world-map-canvas {cursor:crosshair}
+.world-map-canvas {overflow:hidden}
+/* A single axis connects event markers; the final event has no trailing rule. */
+.case-timeline {list-style:none;margin:26px 0 0;padding:0;border:0}
+.case-timeline li {position:relative;margin:0;padding:0 0 26px 30px;min-height:30px}
+.case-timeline li::before {content:'';position:absolute;z-index:1;box-sizing:border-box;left:7px;top:10px;transform:translate(-50%,-50%);width:12px;height:12px;border:2px solid #fff;border-radius:50%;background:#377bbd}
+.case-timeline li::after {content:'';position:absolute;left:7px;top:10px;bottom:-10px;width:1px;transform:translateX(-50%);background:#c6d9ea}
+.case-timeline li:last-child {padding-bottom:0}
+.case-timeline li:last-child::after {display:none}
+.case-timeline time {display:block;font-size:13px;line-height:20px;color:var(--muted);margin:0}
+.case-timeline strong {font-size:15px;font-weight:700;line-height:1.45;margin-top:4px}
+.case-timeline p {font-size:14px;line-height:1.65;color:#3e5d77;margin-top:5px}
+
+.provider-queues {margin:24px 0;padding:22px;border:1px solid var(--line);border-radius:24px;background:var(--panel);box-shadow:var(--panel-shadow)}
+.provider-queues>.resource-section-heading {align-items:flex-start;margin-bottom:12px}
+.provider-queues h2 {display:flex;align-items:center;gap:9px;font-size:21px}
+.provider-queues header p {margin:8px 0 0;font-size:14px;color:var(--muted)}
+.provider-queue {border-top:1px solid #dbe6f1;padding:0}
+#root .provider-queue>summary {list-style:none;padding:17px 34px 17px 2px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;min-height:65px}
+.provider-queue>summary>div {display:flex;align-items:baseline;gap:18px;min-width:0}
+.provider-queue summary strong {font-size:15px;min-width:105px}
+.provider-queue summary span {font-size:14px;color:var(--muted)}
+.provider-queue summary>div>span {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#root .provider-queue>summary::after {right:5px}
+.provider-queue-count {flex:none}
+.provider-queue-content {padding:2px 2px 22px}
+.provider-current {display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;font-size:14px;margin-bottom:16px}
+.provider-current a {display:flex;align-items:center;gap:5px;font-weight:650;color:#2c5f90}
+.provider-current p {margin:0;color:var(--muted)}
+.provider-auto {display:flex;align-items:center;gap:9px;font-size:14px;cursor:pointer}
+.provider-auto input {width:16px;height:16px;accent-color:var(--blue)}
+.provider-stops {padding:0;margin:17px 0;list-style:none}
+.provider-stops li {display:flex;align-items:center;gap:13px;padding:14px 0;border-bottom:1px solid #e3edf6}
+.provider-stop-number {font-size:14px;color:var(--muted);width:18px;flex:none;text-align:center;font-variant-numeric:tabular-nums}
+.provider-stops li>div:nth-child(2) {flex:1;min-width:0}
+.provider-stops a,.provider-stops strong {font-size:15px;line-height:1.5;color:var(--ink);font-weight:650}
+.provider-stops li>div>span,.provider-stops small {display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.provider-stop-actions {display:flex;gap:3px;flex:none}
+.provider-stop-actions .icon-button {min-width:34px;min-height:34px;padding:8px}
+.provider-add-stop {display:flex;gap:12px;margin-top:17px;max-width:850px}
+.provider-add-stop select {flex:1;min-width:0;font-size:14px}
+.provider-add-stop .button {flex:none}
+.provider-actions {display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px}
+.provider-actions .text-button {min-height:38px;font-size:14px}
+.provider-empty {font-size:14px;color:var(--muted);margin:15px 0}
+.queue-hold-note {font-size:14px;color:#815c25;padding:12px 14px;background:#fff8e9;border:1px solid #ebd8ae;border-radius:12px;margin:15px 0}
+.provider-position-note {font-size:13px;color:var(--muted);margin:15px 0 0}
+.provider-notice {font-size:14px;color:#216459;margin-top:12px}
+@media(max-width:650px) {
+ .provider-queues {padding:17px;border-radius:19px}
+ .provider-queue>summary>div {display:block}
+ .provider-queue summary strong {display:block}
+ .provider-queue summary>div>span {display:block;font-size:13px;margin-top:4px;max-width:180px}
+ .provider-add-stop {flex-direction:column}
+ .provider-stops li {flex-wrap:wrap}
+ .provider-stop-actions {margin-left:31px}
+ .provider-queues>.resource-section-heading>span {font-size:13px}
+}
+
+.provider-current a small {display:block;font-size:13px;font-weight:475;color:var(--muted);margin-top:2px}

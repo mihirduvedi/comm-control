@@ -1,0 +1,19 @@
+{
+  "source": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:45][maxsize:33554432];(way[highway][highway!~\"^(footway|cycleway|steps|path|pedestrian|construction|proposed|track)$\"](34.035,-118.265,34.073,-118.215);relation[type=restriction](34.035,-118.265,34.073,-118.215);nwr[name][name~\"Union Station|City Hall|Little Tokyo|Grand Park|Olvera|Historic Park|Japanese American National Museum|Central Library\",i](34.035,-118.265,34.073,-118.215);node[\"addr:housenumber\"](34.035,-118.265,34.073,-118.215););out body;>;out skel qt;",
+  "bounds": [
+    34.035,
+    -118.265,
+    34.073,
+    -118.215
+  ],
+  "downloaded_at": "2026-10-17T06:07:06.865758+00:00",
+  "osm_timestamp": "2026-10-17T06:05:57Z",
+  "license": "ODbL-1.0",
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "copyright_url": "https://www.openstreetmap.org/copyright",
+  "sha256": "fa07d3f14d779ab87425d3ada4dca08d0f158a8a29a3931235822734401c4891",
+  "bytes": 3498190,
+  "elements": 29040,
+  "scope": "Small cached road/landmark extract; not live traffic; routing preview requires operator review"
+}

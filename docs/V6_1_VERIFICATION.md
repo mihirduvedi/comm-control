@@ -1,0 +1,22 @@
+# Comm Control v6.1 verification — October 17, 2026
+
+## Current release checks
+
+- Backend:201 passed in36.30 seconds. One existing Starlette/httpx deprecation warning. New tests exercise recoverable fresh/restore runs, permissions, idempotency, active-work guards, real seed packets, queue versioning and priority reset, conservative report grouping/separation/shared units, fire plus injury coverage, shared response retention after one source closes, separate campus units, gate persistence, blocked paths, manual review precedence and automation pause.
+- TypeScript and production Vite build pass. Largest JS chunk397.82 kB; CSS148.6 kB. IBM Plex Sans fonts are local assets with their license. No new dependency or model weights were installed.
+- Formatting unit checks:2 passed.
+- Current preflight passes frontend, ffmpeg, provider configuration, free-tier confirmation and no-local-weights checks. This checks configuration without making a hosted inference.
+- Standard Chrome browser suite: **26 passed, 4 hosted opt-ins skipped** in 1.2 minutes. Results are recorded in `evidence/v6-1-browser-final.txt`; the last passing run is the authority for the exact pass/skip count. Hosted opt-ins are intentionally skipped for this feature pass. An additional focused campus check passes with map/gate mobile viewport assertions and mobile axe; results are separately recorded in `evidence/v6-1-campus-mobile-check.txt`.
+- Browser coverage includes source-to-map UI, authenticated transport, microphone denial/recovery, caller receipt and Cannot follow, correction/replacement, case history/close/reopen, Resources filters/unit add/update/persistence/offline/missing tiles, recoverable reset and restore, native drag order and Use priority, two callers sharing a fire response with added injury detail, campus lookup/layers/gate updates. Desktop and390 px mobile receive overflow and serious/critical axe checks. Header active control remains centered within 2 pixels.
+- Visual review used the actual authorized app on8765 and isolated Chrome test captures. Resources has a compact readiness strip, map/area list and assignment ledger; campus has separate map/gates/roster. Gray route blocks and Setup highlight stay removed. Full-page mobile capture had a Chrome repeated-compositor artifact, so campus mobile evidence uses normal viewport captures at the map and gates instead.
+- Preservation audit:11 pre-update report IDs retained; all 21 source objects exactly unchanged; no actual-run reset. Backup remains private at `.data/backups/before-v6-1.sqlite3`. User activity can legitimately change later counts.
+
+## Previous hosted evidence and limits
+
+V6 hosted browser checks exercised actual Groq speech/extraction, synthetic MediaRecorder microphone input, location review/hold/delivery, source-linked answers and fixed natural voice playback/cache. Its small 10-case extraction regression passed before the final policy metadata migration. These are historical v6 measurements, not new v6.1 hosted runs or a dispatch accuracy rate. See `docs/V6_VERIFICATION.md` for exact provenance. No weights were trained; this app uses prompt tuning, evidence guards and transparent review priority. Groq request budgets and internet availability still apply.
+
+City geometry uses cached Downtown LA OSM roads, excludes active/stale reported closures and retains them until explicit matched later clearance or manual reopening. Route time is a road estimate without live traffic. Unit positions are simulated bases or operator-marked arrivals. Campus routing uses an authored XYgraph and drawing units; no real-world distance/time or GPS is claimed. Grouping is a same-type/place/time heuristic and requires source review; repeated claims do not become verified facts. Separate incidents at the same place can be manually separated.
+
+Fresh/restore tests run only against `.data-browser-tests`. Private saved-run JSON and source/audio stay in the runtime and are excluded from releases. The source ZIP needs its own configuration on another machine. Run archives depend on the original private source files; they are not independent portable audio backups.
+
+No real emergency dispatch, agency/phone/radio integration, live GPS or public deployment is included. No external message, legal acceptance or submission was made by the agent. Finishing work is actual-device rehearsal, demo recording and event-specific submission writing.
