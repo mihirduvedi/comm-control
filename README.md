@@ -42,7 +42,7 @@ For browser regression instructions, see the current guide. Keep tests separate 
 
 ## Submission and project materials
 
-See [Devpost copy](submission/Devpost_Submission.md), [thumbnail](submission/Comm_Control_Thumbnail.png), and the `presentation/` directory for the pitch deck, poster and demo. OpenStreetMap attribution and licenses are retained under `data/` and the bundled font directories.
+See [Devpost copy](submission/Devpost_Submission.md), [thumbnail](submission/Comm_Control_Thumbnail.png), and the `presentation/` directory for the pitch deck and poster. OpenStreetMap attribution and licenses are retained under `data/` and the bundled font directories.
 
 ## Detailed implementation history
 
