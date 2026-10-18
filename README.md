@@ -2,6 +2,14 @@
 
 **From a spoken report to a coordinated response.**
 
+## Try the live demo
+
+**[Open Comm Control live](https://several-monday-invite-cakes.trycloudflare.com/)**
+
+This is a temporary shared sample workspace with fictional reports and teams. Explore mapped incidents, response plans, resources and queues. Changes are shared between visitors; use fictional information only. Hosted voice AI is disabled on this public instance. The full voice workflow is available through the local setup below with your own Groq key.
+
+The link depends on the host laptop and Cloudflare Quick Tunnel remaining running; it is not permanent hosting.
+
 Comm Control is a local hackathon prototype that turns voice reports into source-linked incident records, mapped locations and reviewed response plans. It includes Downtown Los Angeles and USC campus workspaces, capability-based demo resource allocation, closure-aware routing, persistent provider queues and operator-approved communications.
 
 ## Run locally
