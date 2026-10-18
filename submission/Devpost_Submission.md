@@ -46,7 +46,7 @@ Voice intake introduced another practical challenge: starting a new report must 
 
 We built a working path from voice intake through reviewed incident records, mapping, resource allocation and response planning. Both workspaces preserve their own queues and resources, while the interface keeps source evidence and uncertainty accessible beside the operational view.
 
-The v6.6 verification record reports 241 backend tests and 45 distinct browser checks passed. Four hosted speech/model checks were skipped in that release. These results cover software behavior and recovery; they do not establish model accuracy or operational emergency readiness.
+The project verification record reports 241 backend tests and 45 distinct browser checks passed. Four hosted speech/model checks were skipped in that release. These results cover software behavior and recovery; they do not establish model accuracy or operational emergency readiness.
 
 ### What we learned
 
