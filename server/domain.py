@@ -81,6 +81,8 @@ class Domain:
   if text is not None and (not text.strip() or len(text)>6000):raise ValueError('Enter between 1 and 6,000 characters.')
   source={'id':uid(),'session_id':session_id,'origin':origin,'direction':direction,'captured_at':now(),'audio_path':str(audio_path) if audio_path else None,'origin_label':'voice' if audio_path else 'typed','text':text,'revision':1,'reply_to':reply_to,'response_action':response_action}
   job={'id':uid(),'source_id':source['id'],'origin':origin,'session_id':session_id,'direction':direction,'state':'queued','created_at':now(),'error':None,'draft_id':None,'attempts':0}
+  from .demo_budget import visitor
+  if visitor.get():job['public_visitor']=visitor.get()
   with self.store.transaction():
    self.store.put('source',origin,source,event='source_captured');return self.store.put('job',origin,job,event='job_queued')
 
@@ -91,6 +93,8 @@ class Domain:
   job=(out if out and (self.outgoing_streak<2 or not inbound) else inbound or out)[0]
   self.outgoing_streak=self.outgoing_streak+1 if job['direction']=='outgoing' else 0
   source=self.store.get(job['source_id']);start=time.monotonic()
+  from .demo_budget import visitor
+  visitor_token=visitor.set(job.get('public_visitor'))
   try:
    if source['audio_path'] and not source.get('stt_model'):
     with self.store.transaction():job.update(state='transcribing',attempts=job['attempts']+1);job=self.store.put('job',job['origin'],job,event='job_running')
@@ -104,6 +108,7 @@ class Domain:
     draft=self.store.put('draft',source['origin'],draft,event='draft_ready');job.update(state='ready',draft_id=draft['id'],processing_ms=round((time.monotonic()-start)*1000));self.store.put('job',job['origin'],job,event='job_ready')
   except Exception as e:
    with self.store.transaction():job.update(state='failed',error=str(e)[:350]);self.store.put('job',job['origin'],job,event='job_failed')
+  finally:visitor.reset(visitor_token)
   return True
 
  def manual_draft(self,origin,session_id,text,claims,direction='inbound',reply_to=None,response_action='replied'):

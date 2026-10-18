@@ -466,3 +466,5 @@ p {line-height:1.6}
 }
 
 .provider-current a small {display:block;font-size:13px;font-weight:475;color:var(--muted);margin-top:2px}
+
+.public-demo-notice{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;margin:0 24px 14px;padding:10px 14px;border:1px solid #b9d2ed;border-radius:12px;background:#f0f7fc;color:#244967;font-size:13px;line-height:1.5}.public-demo-notice strong{white-space:nowrap}.public-demo-notice span{flex:1;min-width:200px}.public-demo-notice a{color:#1c5f9e;text-decoration:underline;white-space:nowrap}@media(max-width:600px){.public-demo-notice{margin:0 10px 12px;font-size:12px}}

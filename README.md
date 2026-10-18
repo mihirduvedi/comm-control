@@ -21,7 +21,7 @@ Built for the **Resilience Comms** lens at the **InnovateLA x Dual-Use Hackathon
 
 **[Open Comm Control →](https://several-monday-invite-cakes.trycloudflare.com/)**
 
-The public demo opens a shared workspace with fictional reports and teams. It runs the real coordination backend. Hosted voice AI is disabled on this instance; the [local setup](docs/SETUP.md) enables the voice workflow with your own provider account. The public link is temporary and depends on the host laptop staying online. Use fictional information because visitors share the same demo data.
+The public demo opens a shared workspace with fictional reports and teams. It runs the real coordination backend. Public voice intake uses the host’s verified Free-tier Groq account through the server. The key stays private. Each network/IP gets 15 model calls per hour; shared limits are 60 calls per hour, 100 per day and 150 total. Public voice access expires after 24 hours, and hitting a limit stops model processing without a paid fallback. A report can use several calls. The [local setup](docs/SETUP.md) supports your own provider account. The public link is temporary and depends on the host laptop staying online. Use fictional information because visitors share the same demo data.
 
 A quick way to explore:
 
@@ -127,7 +127,7 @@ The language model interprets the report. Local rules check the resulting claims
 
 The project verification record reports **241 backend tests** and **45 distinct browser checks** passed. Coverage includes source retention, uncertain locations, closure-aware routing, assignment queues, failed reassignment recovery and separate City/USC state. Four hosted speech/model checks were skipped in that release. These are software checks, not measurements of emergency-response outcomes or model accuracy.
 
-The local build has connected voice-processing evidence using fictional speech. The public demo lets visitors use the saved sample incidents and coordination controls without sharing a model credential. See [validation and scope](docs/VALIDATION.md).
+The local build has connected voice-processing evidence using fictional speech. The public demo supports saved sample incidents and bounded live voice processing without exposing a model credential. See [validation and scope](docs/VALIDATION.md).
 
 The current boundaries matter to the product: hosted speech and extraction need internet; low-bandwidth transport is simulated rather than tested on radio hardware. Routes use cached maps and reported closures, without live traffic. This is a hackathon prototype for supervised evaluation, not a validated emergency dispatch service.
 

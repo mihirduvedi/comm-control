@@ -18,16 +18,18 @@ STT_MODEL=os.environ.get('COMM_STT_MODEL','whisper-large-v3-turbo')
 
 def provider_key():
  from dotenv import dotenv_values
- values=dotenv_values(ROOT/'.env')
+ values=dotenv_values(Path(os.environ.get('COMM_PROVIDER_ENV_FILE',str(ROOT/'.env'))))
  return os.environ.get('GROQ_API_KEY') or values.get('GROQ_API_KEY') or os.environ.get('COMM_API_KEY') or values.get('COMM_API_KEY')
 
 def free_tier_confirmed():
  from dotenv import dotenv_values
- return (os.environ.get('COMM_FREE_TIER_CONFIRMED') or dotenv_values(ROOT/'.env').get('COMM_FREE_TIER_CONFIRMED','')).lower()=='yes'
+ return (os.environ.get('COMM_FREE_TIER_CONFIRMED') or dotenv_values(Path(os.environ.get('COMM_PROVIDER_ENV_FILE',str(ROOT/'.env')))).get('COMM_FREE_TIER_CONFIRMED','')).lower()=='yes'
 
 def reserve_request():
+ from . import demo_budget
+ if demo_budget.active_budget is not None:demo_budget.active_budget.reserve(demo_budget.visitor.get())
  if not free_tier_confirmed():raise RuntimeError('Confirm a Groq Free-tier account using scripts/configure_key.py before enabling hosted processing.')
- usage_path=ROOT/'.data/provider-usage.json';usage_path.parent.mkdir(exist_ok=True)
+ usage_path=Path(os.environ.get('COMM_PROVIDER_USAGE_FILE',str(ROOT/'.data/provider-usage.json')));usage_path.parent.mkdir(parents=True,exist_ok=True)
  stamp=time.time()
  with usage_path.open('a+') as usage:
   fcntl.flock(usage,fcntl.LOCK_EX);usage.seek(0)
@@ -80,7 +82,8 @@ async def transcribe(path):
  import wave,array,math
  with wave.open(str(wav),'rb') as w:
   duration=w.getnframes()/w.getframerate();samples=array.array('h',w.readframes(w.getnframes()))
- if not 0.2<=duration<=60.5: raise ValueError('Recording must be no longer than 60 seconds.')
+ maximum=30.5 if os.environ.get('COMM_PUBLIC_VOICE')=='yes' else 60.5
+ if not 0.2<=duration<=maximum: raise ValueError('Recording must be no longer than '+str(int(maximum))+' seconds.')
  if math.sqrt(sum(x*x for x in samples)/max(1,len(samples)))<30: raise ValueError('No speech detected. Record again or use text.')
  started=time.monotonic()
  async with httpx.AsyncClient(timeout=60,trust_env=False) as client:

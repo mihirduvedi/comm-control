@@ -27,6 +27,6 @@ export function VoiceInput({sessionId,direction='inbound',onJob,onError,replyTo,
    <input ref={input} type="file" accept="audio/*,.webm,.mp4" className="sr-only" aria-label="Audio file" onChange={e=>{if(e.target.files?.[0])void upload(e.target.files[0]);e.target.value=''}}/>
   </div>
   {typing&&<form onSubmit={e=>{e.preventDefault();void submitText()}}><label className="field-label" htmlFor={'source-'+direction}>Type the {direction==='outgoing'?'operator response':'field report'}</label><textarea id={'source-'+direction} value={textValue} maxLength={6000} onChange={e=>onTextChange?onTextChange(e.target.value):setText(e.target.value)} rows={compact?3:5} placeholder={direction==='outgoing'?'Stay outside. Do not use the north gate.':'Describe what happened, where, and what you need.'}/><button className="button secondary" type="submit" disabled={!textValue.trim()||sending||disabled}>{sending?'Processing…':'Interpret typed text'}</button><span className="hint">AI will read the text you enter.</span></form>}
-  {!typing&&!recorder.recording&&<p className="input-hint">Up to 60 seconds. Audio is sent to Groq for transcription.</p>}
+  {!typing&&!recorder.recording&&<p className="input-hint">Up to {recorder.maxSeconds} seconds. Audio is sent to Groq for transcription.</p>}
  </div>
 }

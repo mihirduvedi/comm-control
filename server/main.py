@@ -158,6 +158,8 @@ def create_app(data_dir=None,workers=True):
   if j.get('retry_id'):return d.store.get(j['retry_id'],'job')
   source=d.store.get(j['source_id'],'source')
   result={**j,'id':uid(),'state':'queued','error':None,'draft_id':None,'created_at':now(),'retry_of':j['id']}
+  from .demo_budget import visitor
+  if visitor.get():result['public_visitor']=visitor.get()
   with d.store.transaction():
    result=d.store.put('job',j['origin'],result,event='job_queued');j['retry_id']=result['id'];d.store.put('job',j['origin'],j,event='job_retried')
   return result

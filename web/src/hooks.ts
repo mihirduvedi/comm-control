@@ -19,6 +19,8 @@ export function useJob(){
 }
 export function useRecorder(onRecording:(blob:Blob)=>void,onError:(message:string)=>void){
  const [recording,setRecording]=useState(false),[seconds,setSeconds]=useState(0);
+ const [maxSeconds,setMaxSeconds]=useState(60);
+ useEffect(()=>{let active=true;void fetch('/api/public-demo/status').then(r=>r.ok?r.json():null).then(v=>{if(active&&v?.public_demo)setMaxSeconds(30)}).catch(()=>{});return()=>{active=false}},[]);
  const media=useRef<MediaRecorder|null>(null),stream=useRef<MediaStream|null>(null),chunks=useRef<Blob[]>([]),cancelled=useRef(false);
  const stop=useCallback(()=>{if(media.current?.state==='recording')media.current.stop()},[]);
  const cancel=()=>{cancelled.current=true;stop()};
@@ -32,7 +34,7 @@ export function useRecorder(onRecording:(blob:Blob)=>void,onError:(message:strin
    recorder.start(250);setSeconds(0);setRecording(true);
   }catch(e){onError((e as Error).name==='NotAllowedError'?'Microphone permission was denied. Allow it in browser settings, upload audio, or use text.':(e as Error).message)}
  };
- useEffect(()=>{if(!recording)return;const timer=setInterval(()=>setSeconds(x=>{if(x>=59){stop();return 60}return x+1}),1000);return()=>clearInterval(timer)},[recording,stop]);
+ useEffect(()=>{if(!recording)return;const timer=setInterval(()=>setSeconds(x=>{if(x>=maxSeconds-1){stop();return maxSeconds}return x+1}),1000);return()=>clearInterval(timer)},[recording,stop,maxSeconds]);
  useEffect(()=>()=>{cancelled.current=true;if(media.current?.state==='recording')media.current.stop();stream.current?.getTracks().forEach(t=>t.stop())},[]);
- return {recording,seconds,start,stop,cancel};
+ return {recording,seconds,maxSeconds,start,stop,cancel};
 }

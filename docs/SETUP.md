@@ -60,4 +60,10 @@ The local application uses private runtime data under `.data`. Test runs use sep
 
 ## Temporary public demo
 
-The shared public demo is a separate sample instance. It intentionally allows visitors to explore and change fictional coordination data, and blocks hosted voice intake. Its URL depends on the host laptop and tunnel process; it isn't permanent deployment infrastructure. The local application's default access boundaries remain in place.
+The shared public demo is a separate sample instance. It intentionally allows visitors to explore and change fictional coordination data, and offers bounded hosted voice intake when the owner has explicitly verified the Free-tier account. Its URL depends on the host laptop and tunnel process; it isn't permanent deployment infrastructure. The local application's default access boundaries remain in place.
+
+Public model calls use a persistent ledger separate from the sample database. Limits apply before each provider call, including queued extraction and generated speech: 8 calls per minute, 60 per hour, 100 per rolling day and 150 total. Networks/IPs share an allowance of 15 per hour and 30 per rolling day. Audio uploads are limited to 2 MB and 30 seconds. Counters and the 24-hour access expiry survive restart and demo resets. Failed attempts count conservatively toward the limits.
+
+The public voice launcher requires a private provider configuration, Free-tier confirmation and explicit owner verification. It doesn't add a payment method, upgrade an account or use a paid fallback. The host must keep its provider account on Free. Keys are never passed through a URL, browser bundle or public repository. The usage notice shows the remaining network allowance.
+
+The shared sample workspace isn't suitable for private reports. Upload only fictional audio; recordings and extracted reports can be retained on the demo host, and received reports are visible to other visitors.
