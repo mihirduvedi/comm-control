@@ -13,7 +13,7 @@
 
 **From a spoken report to a coordinated response.**
 
-Comm Control helps an operator turn a voice report into a mapped incident and a response plan. It keeps the caller's words attached to the facts, checks which demo teams can help, and finds routes around reported blockages. The operator can review uncertain details and approve outgoing instructions from the same workspace.
+Comm Control helps managers and operators bring incoming reports into one place, map events and coordinate a response. It keeps the caller's words attached to the facts, checks which demo teams can help, and finds routes around reported blockages. The operator can review uncertain details and approve outgoing instructions from the same workspace.
 
 Built for the **Resilience Comms** lens at the **InnovateLA x Dual-Use Hackathon**, October 16–18, 2026, at USC.
 
@@ -31,13 +31,15 @@ A quick way to explore:
 
 Download the pitch as a [PowerPoint](presentation/Comm_Control_Pitch.pptx) or [PDF](presentation/Comm_Control_Pitch.pdf).
 
-## The person we're building for
+## Who we're building for
 
-A campus or facilities operator hears: “There's smoke near City Hall. Two people are outside. I don't know if anyone is still inside.”
+We're building Comm Control for the people responsible for knowing what's happening across a building, site or service area: building and warehouse managers, corporate facilities teams, campus staff and 911 operators handling everyday calls.
 
-That report leaves work to do. The operator needs to locate the event, understand what remains unknown, find a suitable team and check whether it can reach the scene. A confident summary alone doesn't answer those questions.
+On a normal day, reports arrive from different people about equipment problems, blocked access, maintenance needs or safety concerns. Comm Control brings those events into one workspace, places them on a map and automatically prepares a response plan using the available teams and resources. Managers can review the plan, see what's been allocated, organize the next jobs and track each event through its response. The goal is a shared picture of what's happening and who's handling it, with the information needed to coordinate a solution in the same place.
 
-The hackathon prompt asks teams to help someone prepare for disaster and choose a proportionate response before a disruptive shutdown. Our person is the operator at the desk. Comm Control helps them ask for missing information, hold a plan that can't be supported and send a specific instruction once it's reviewed. Routine maintenance gives that workflow a reason to be in place before an emergency.
+During an emergency, that same workflow extends to emergency outreach teams and service providers working across a broader area. Incoming reports become mapped incidents, available resources can be coordinated across locations, and teams can track assignments and follow-up as conditions change. The focus shifts from daily operations to emergency needs while keeping the same central view of events, resources and responses.
+
+Our prototype demonstrates this through campus facilities work and city incident scenarios. Broader organizational use and emergency-service deployment are the intended applications for future pilots.
 
 ## Follow a report through the system
 
@@ -88,9 +90,9 @@ The operator can prepare an instruction and approve its exact wording. The field
 
 | Ordinary day | During a disruption |
 | --- | --- |
-| A facilities desk receives a maintenance report, locates the building and assigns a suitable team. | An operator organizes incoming incident reports, preserves uncertainty and checks access before coordinating a response. |
-| Resources and queues help keep routine work organized. | Shared closure information and current availability help avoid unsupported assignments. |
-| Case history preserves handoffs and corrections. | Source evidence lets an operator revisit a claim as the situation changes. |
+| Building, warehouse and corporate facilities managers centralize maintenance, access and safety reports across their sites. | Emergency outreach teams and service providers centralize incident reports across a wider affected area. |
+| Managers review automatically prepared plans and track allocated teams, resources and queued work. | Coordinators prioritize emergency needs, check access and assign available resources across locations. |
+| Operators, including those handling everyday 911 calls, keep the event, its response and follow-up connected. | Shared case history and source evidence support handoffs as teams and conditions change. |
 
 The campus workspace is our everyday-use demonstration. The Downtown LA workspace demonstrates incident coordination with fictional responders. Using the workflow routinely could help teams learn the maps, procedures and review habits before an emergency; testing that benefit is part of the proposed pilot.
 
